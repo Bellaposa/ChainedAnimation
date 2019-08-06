@@ -44,6 +44,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStackView()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapAnimations)))
+    }
+    
+    @objc fileprivate func handleTapAnimations() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.titleLabel.transform = CGAffineTransform(translationX: -30, y: 0)
+        }) { (_) in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.titleLabel.alpha = 0
+                self.titleLabel.transform = self.titleLabel.transform.translatedBy(x: 0, y: -200)
+            })
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.bodyLabel.transform = CGAffineTransform(translationX: -30, y: 0)
+        }) { (_) in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.bodyLabel.alpha = 0
+                self.bodyLabel.transform = self.bodyLabel.transform.translatedBy(x: 0, y: -200)
+            })
+        }
     }
 }
 
